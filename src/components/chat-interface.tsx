@@ -5,9 +5,10 @@ import useChat from "@/hooks/use-chat";
 import { cn } from "@/lib/utils";
 import TextInput from "./text-input";
 import { editChat } from "@/actions";
+import { IChat } from "@/types/database.dto";
 
 interface Props {
-  data: any[][];
+  data: IChat[][];
 }
 
 enum ToggleType {
@@ -78,18 +79,21 @@ const ChatUI = ({
 
   const handleEditChat = async (prompt: string, editpromptid: number) => {
     setIsEditing(true);
-    const editedChat = await editChat(prompt, editpromptid);
+    const editedChat = (await editChat(prompt, editpromptid)) as IChat | null;
 
     setPrompt("");
 
-    setChat((prev: any[]) => {
-      const copy = [...prev];
-      copy[index] = [...copy[index], editedChat];
-      return copy;
-    });
+    if (editedChat) {
+      setChat((prev: IChat[][]) => {
+        const copy = [...prev];
+        copy[index] = [...copy[index], editedChat];
+        return copy;
+      });
+      setToggleEditInput(false);
+      handleTogglePrompt(max + 1, ToggleType.last);
+    }
+
     setIsEditing(false);
-    setToggleEditInput(false);
-    handleTogglePrompt(max + 1, ToggleType.last);
   };
 
   return (

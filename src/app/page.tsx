@@ -1,5 +1,6 @@
 import ChatInterface from "@/components/chat-interface";
 import { createClient } from "@/lib/supabase/server";
+import { IChat } from "@/types/database.dto";
 
 export default async function Home() {
   const supabase = await createClient();
@@ -13,8 +14,8 @@ export default async function Home() {
 
   const computedData =
     (data &&
-      data.map((ch) => {
-        const innerChats = ch.chat;
+      data.map((ch: IChat) => {
+        const innerChats = ch.chat as [];
 
         return [ch, ...innerChats];
       })) ||

@@ -4,10 +4,11 @@ import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { createChat } from "@/actions";
 import TextInput from "./text-input";
+import { IChat } from "@/types/database.dto";
 
 interface Props {
   chat: any[];
-  setChat: (chat: any) => void;
+  setChat: (chat: IChat[][]) => void;
 }
 
 export default function PromptInput({ chat, setChat }: Props) {
