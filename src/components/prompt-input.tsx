@@ -29,7 +29,7 @@ export default function PromptInput({ chat, setChat }: Props) {
     <div
       className={cn(
         "sticky w-11/12 sm:w-3/5 rounded-e-full rounded-s-full overflow-hidden flex items-center mx-auto bg-[#323232D5] gap-x-2 px-3",
-        chat.length < 1 ? "my-auto" : "bottom-10"
+        chat.length < 1 ? "my-auto" : "bottom-10 mt-auto"
       )}
     >
       <TextInput

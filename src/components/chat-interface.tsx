@@ -32,6 +32,12 @@ export default function ChatInterface({ data }: Props) {
         })}
       </section>
 
+      {chat.length < 1 && (
+        <h1 className="font-semibold mx-auto relative top-64 text-3xl">
+          What can I help with?
+        </h1>
+      )}
+
       <PromptInput chat={chat} setChat={setChat} />
     </>
   );
