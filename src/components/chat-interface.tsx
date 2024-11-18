@@ -48,7 +48,7 @@ const ChatUI = ({
   setChat,
   index,
 }: {
-  chat: any[];
+  chat: IChat[];
   setChat: (chat: any) => void;
   index: number;
 }) => {
